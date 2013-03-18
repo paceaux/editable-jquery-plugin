@@ -1,0 +1,12 @@
+.editable:hover, .editable:focus{
+    outline: 1px dashed #bbb;
+}
+[contenteditable="true"]{
+    outline: 1px dashed #777;
+}
+[contenteditable="true"]:focus, [contenteditable="true"]:hover{
+    outline: 1px solid #9b9;
+}
+[contenteditable="true"] > style[contenteditable="true"] {
+    display:block;
+}
