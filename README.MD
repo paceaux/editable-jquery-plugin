@@ -16,6 +16,7 @@ Usage: use as you would any other jQuery plugin.
 Version:
    1
 	.00 :: 	initial upload. Elements can be editable and styled. 
+	.1	::  Fixed the hovering issue where user could only edit styles with up arrow. 
 
 
 
@@ -24,7 +25,6 @@ Upcoming:
 
 
 Known Defects / issues:
-	you have to use the up arrow to edit the styles
 	only works on browsers with 'scoped' as an enabled flag (basically, beta versions of chrome or Chrome 26+)
 
 
