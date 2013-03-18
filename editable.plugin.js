@@ -3,6 +3,19 @@
       var $this = $(this);
       var $parent = $(this).parent();
       var stylable = type == 'styles' ? true : false;
+      function testFeature (el, attr) {
+              var test = document.createElement(el);
+              if (attr in test) {
+                  return true;
+              } else {
+                  return false;
+              }                
+          }
+      var features = {
+          contenteditable : testFeature('div', 'contenteditable'),
+          scoped : testFeature('style','scoped')
+      };
+      console.log(features);
       var methods = {
           init : function () {
               this.bindEvents();
