@@ -17,7 +17,9 @@ Version:
    1
 	.00 :: 	initial upload. Elements can be editable and styled. 
 	.1	::  Fixed the hovering issue where user could only edit styles with up arrow. 
-
+	.2  ::	Feature detection
+			Added a fallback for when Scoped doesn't work. 
+			Also added helpful comments. 
 
 
 Upcoming:
@@ -25,8 +27,7 @@ Upcoming:
 
 
 Known Defects / issues:
-	only works on browsers with 'scoped' as an enabled flag (basically, beta versions of chrome or Chrome 26+)
-
+it returns contenteditable as not being a feature, when it definitely is. 
 
 
 
