@@ -47,7 +47,7 @@
           makeStylable : function () {
               if(stylable == true){
                   $this.each(function(index) {
-                      var styleBlock = $(this).prepend('<style scoped contenteditable></style>');
+                      var styleBlock = $(this).prepend('<style scoped></style>');
                   methods.addChildElsToStyles($(this));
                   });
               }
@@ -61,12 +61,14 @@
                       }                      
                   },
                   mouseout: function() {
+                      setTimeout(function(){console.log("waiting")},1000);
                       methods.removeEditable($(this));
                       if (stylable == true){
                           methods.removeEditable($(this).find('style'));
                       }                      
                   },
                   focusout: function() {
+                      setTimeout(function(){console.log("waiting")},1000);
                       methods.removeEditable($(this));
                       if (stylable == true){
                           methods.removeEditable($(this).find('style'));
