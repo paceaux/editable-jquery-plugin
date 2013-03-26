@@ -1,5 +1,5 @@
 (function( $ ){
-  $.fn.editable = function( type ) {
+  $.fn.editable = function( options ) {
   //SETUP    
       var $this = $(this);
       var $parent = $(this).parent();
@@ -17,9 +17,12 @@
           contenteditable : testFeature('div', 'contenteditable'),
           scoped : testFeature('style','scoped')
       };
-      var stylable = type == 'styles' ? true : false; // poor practice, need to put all parameters in an object
-      console.log(features);
-
+  //DEFAULT SETTINGS
+      var settings = $.extend( {
+        'stylable'         : false,
+        'recoverable' : false,
+         'savable': false
+      }, options);
   //PLUGIN METHODS
       var methods = {
           init : function () {
@@ -65,7 +68,7 @@
           },
           makeStylable : function () {
             //need to also add a fallback for feature detection
-            if(stylable == true){
+            if(settings.stylable == true){
                 $this.each(function(index) {
                     var styleBlock = $(this).prepend('<style scoped></style>');
                     methods.addChildElsToStyles($(this));
@@ -75,26 +78,15 @@
           bindEvents : function () {
             $this.bind({
               dblclick: function() {
-                  methods.makeEditable($(this));
-                  if (stylable == true){
-                    //doesn't make sense in my head to do this
-                    //content editable is inherited
-                      methods.makeEditable($(this).find('style'));
-                  }                      
+                  methods.makeEditable($(this));                                     
                 },
               mouseout: function() {
                 setTimeout(function(){console.log("waiting")},1000);
-                methods.removeEditable($(this));
-                  if (stylable == true){
-                      methods.removeEditable($(this).find('style'));
-                  }                      
+                methods.removeEditable($(this));                
                 },
               focusout: function() {
                 setTimeout(function(){console.log("waiting")},1000);
-                methods.removeEditable($(this));
-                if (stylable == true){
-                    methods.removeEditable($(this).find('style'));
-                }                                         
+                methods.removeEditable($(this));                                       
               }
             });
           }
@@ -102,4 +94,4 @@
      methods.init();
   };
 })( jQuery );
-$('.editable').editable('styles');
+$('.editable').editable({stylable:false, recoverable:false});
