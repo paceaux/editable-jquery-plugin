@@ -20,6 +20,9 @@ Version:
 	.2  ::	Feature detection
 			Added a fallback for when Scoped doesn't work. 
 			Also added helpful comments. 
+	.3	::	added default settings
+			options are passed as an object now
+				 
 
 
 Upcoming:
