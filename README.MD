@@ -31,6 +31,7 @@ Upcoming:
 
 Known Defects / issues:
 it returns contenteditable as not being a feature, when it definitely is. 
+I'm not doing any preventDefault .... this isn't problematic for divs, but certainly could be for interactive elements such as links or labels (which is how I discovered it): doubleclick the label for an input, and it'll transfer focus down to the input. 
 
 
 
