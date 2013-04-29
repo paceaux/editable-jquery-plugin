@@ -78,7 +78,8 @@
           bindEvents : function () {
             $this.bind({
               dblclick: function() {
-                  methods.makeEditable($(this));                                     
+                  methods.makeEditable($(this));
+                  $(this).focus();                                     
                 },
               mouseout: function() {
                 setTimeout(function(){console.log("waiting")},1000);

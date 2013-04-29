@@ -22,7 +22,7 @@ Version:
 			Also added helpful comments. 
 	.3	::	added default settings
 			options are passed as an object now
-				 
+	.3.1::	Added a .focus() to the dblclick event so that, after you double click the element, focus is immediately transferred. 				 
 
 
 Upcoming:
