@@ -1,4 +1,8 @@
-(function( $ ){
+/*
+EDITABLE JQUERY PLUGIN
+License: Copyright 2013 and All Rights Reserved by Frank Marshall Taylor
+*/
+;(function( $ ){
   $.fn.editable = function( options ) {
   //SETUP    
       var $this = $(this);
