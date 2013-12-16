@@ -14,9 +14,11 @@ a fun little jQuery plugin that lets you edit the content or the styles of an el
 				
 **References**:		
 http://caniuse.com/#search=contenteditable
+
 http://caniuse.com/#search=scoped
 
-**Demo**:			http://blog.frankmtaylor.com/2013/05/12/making-content-editing-easier-with-an-editable-jquery-plugin/
+**Demo**:
+http://blog.frankmtaylor.com/2013/05/12/making-content-editing-easier-with-an-editable-jquery-plugin/
 
 ## Usage ##
 
@@ -24,13 +26,14 @@ http://caniuse.com/#search=scoped
 The plugin has a default method which let's you just make an element editable: 
 
     $('.someDivOrWhatever').editable();
+
 ### Editing Styles ###
-**from jQuery**
-You can also edit the styles of that element. It'll used the `scoped` attribute to generate a styleblock scoped to your element. if your browser doesn't support `scoped`, then it'll create an `id` on the element and generate a css selector for each element in that block
+#### from jQuery ####
+You can also edit the styles of that element. It'll used the `scoped` attribute to generate a styleblock scoped to your element. If your browser doesn't support `<style scoped>`, then it'll create an `id` on the element and generate a css selector for each element in that block
 
     $('section aside article').editable({stylable: true});
 
-**From the HTML**
+#### From the HTML ####
 You don't have to just control the `stylable` as a parameter passed through jQuery. You can use a data attribute on the element, too:
 
     <div data-stylable="true">
@@ -40,6 +43,9 @@ You don't have to just control the `stylable` as a parameter passed through jQue
 You might spend a lot of time making a lot of changes to your element and not want to `CTRL + Z` to get your changes back to a pristine state. You can mark any element as recoverable, where pressing the `esc` key will take that element back to its original version: 
 
     $("div").editable({recoverable:true})
+
+#### from the html ####
+Just like the stylable parameter, you can set elements as recoverable from the HTML: 
     <div data-recoverable="true">
 
 ### Setting a Trigger
@@ -59,7 +65,7 @@ By default, an element becomes editable when you doubleclick it. When you mouseo
 
 
 
-**License**: Copyright (c) <2013> <Frank M. Taylor>
+**License**: Copyright (c) 2013 Frank M. Taylor
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
