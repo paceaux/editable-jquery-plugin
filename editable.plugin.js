@@ -22,16 +22,18 @@ License: Copyright 2013 and All Rights Reserved by Frank Marshall Taylor
           scoped : testFeature('style','scoped')
       };
   //DEFAULT SETTINGS
-      var settings = $.extend( {
-        'stylable'         : false,
+      var settings = $.extend({
+        'trigger' : 'dblclick',
+        'stylable' : false,
         'recoverable' : false,
-         'savable': false
+        'savable': false
       }, options);
   //PLUGIN METHODS
       var methods = {
           init : function () {
               this.bindEvents();
               this.addIndexId();
+              this.makeRecoverable();
               this.makeStylable();
           },
           removeEditable : function (el) {
@@ -72,31 +74,79 @@ License: Copyright 2013 and All Rights Reserved by Frank Marshall Taylor
           },
           makeStylable : function () {
             //need to also add a fallback for feature detection
-            if(settings.stylable == true){
-                $this.each(function(index) {
+                $this.each(function (index) {
+                  if(settings.stylable == true || $(this).attr('data-stylable') == 'true' ){
                     var styleBlock = $(this).prepend('<style scoped></style>');
                     methods.addChildElsToStyles($(this));
+                  }
                 });
+            
+          },
+          makeRecoverable: function () {
+              $this.each( function (index) {
+                if (settings.recoverable == true || $(this).attr('data-recoverable') == 'true') {
+                    var originalContent = JSON.stringify($(this).html());
+                    $(this).attr('data-original', originalContent);
+                  }
+              });
+          },
+          recoverContent: function (el) {
+            if ( $(el).attr('data-original') ) {
+              var originalContent = JSON.parse($(el).attr('data-original'));
+              $(el).html(originalContent);
+            }
+          },
+          helpers: {
+            keydown: function (e) {
+
+              var map = [];
+              map[e.keyCode] = e.type == 'keydown';
+              if (map[27]) {
+                methods.recoverContent($(this));
+              }
             }
           },
           bindEvents : function () {
+            //all bindings
             $this.bind({
-              dblclick: function() {
-                  methods.makeEditable($(this));
-                  $(this).focus();                                     
-                },
               mouseout: function() {
-                setTimeout(function(){console.log("waiting")},1000);
-                methods.removeEditable($(this));                
-                },
+                setTimeout(function(){
+                  methods.removeEditable($(this));                
+                },500);
+              },
               focusout: function() {
-                setTimeout(function(){console.log("waiting")},1000);
-                methods.removeEditable($(this));                                       
+                setTimeout(function(){
+                  methods.removeEditable($(this));                                       
+                },500);
               }
             });
+            // custom trigger
+            if (settings.trigger !== 'dblclick') {
+              $this.on(settings.trigger, function () {
+                methods.makeEditable($(this));
+                $(this).focus();
+              });
+            } else {
+              $this.bind({
+                dblclick: function() {
+                    methods.makeEditable($(this));
+                    $(this).focus();                                     
+                  }
+                });
+            };
+            // recoverable
+            if (settings.recoverable == true) {
+                $this.bind({keydown: methods.helpers.keydown})
+            } else {
+              $this.each(function (index) {
+                if ($(this).attr('data-original') || $(this).attr('data-recoverable') ) {
+                  $(this).bind({keydown: methods.helpers.keydown})
+                }
+              });
+            }
           }
     };
      methods.init();
   };
 })( jQuery );
-$('.editable').editable({stylable:false, recoverable:false});
+$('.editable').editable({stylable:true, recoverable: true});
