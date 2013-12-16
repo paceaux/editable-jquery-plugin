@@ -37,7 +37,7 @@ a fun little jQuery plugin that lets you edit the content or the styles of an el
 
 
 ### Upcoming ###
-	a "save" option so that the edited content can be put in local or session storage
+ a "save" option so that the edited content can be put in local or session storage
 
 
 ### Known Defects / issues ###
@@ -46,4 +46,4 @@ a fun little jQuery plugin that lets you edit the content or the styles of an el
 
 
 
-License: Copyright 2013 and All Rights Reserved by Frank Marshall Taylor
+License: Copyright 2013 and All Rights Reserved by Frank Marshall Taylor. (reuse by permission only)
